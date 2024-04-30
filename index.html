@@ -4,11 +4,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Dreck | MUD Client</title>
 		<script src="main.js" type="module"></script>
+		<script src="src/joystick/joystick.js" type="module"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="node_modules/@xterm/xterm/lib/xterm.js"></script>
 		<script src="node_modules/@xterm/addon-fit/lib/addon-fit.js"></script>
 		<!-- <script src="https://unpkg.com/@phosphor-icons/web"></script> -->
 		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="src/joystick/joystick.css">
 		<link rel="stylesheet" href="node_modules/@xterm/xterm/css/xterm.css" />
 		<link rel="icon" type="image/x-icon" href="favicon.ico">
 		<link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css" />
@@ -21,6 +23,17 @@
 	</head>
 	<body>
 		<main>
+			<div class="joystick-container">
+				<div class="cog-container">
+					<div class="cog-edit-pane"></div>
+					<div class="cog-center">
+						<div class="cog"></div>
+						<div class="teeth"></div>
+					</div>
+					<div class="joystick"></div>
+				</div>
+			</div>
+
 			<div id="consoleContainer">
 				<div id="console"></div>
 				<div id="commandLineContainer">

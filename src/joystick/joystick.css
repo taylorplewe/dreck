@@ -1,0 +1,83 @@
+.joystick-container {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+	margin-left: 48px;
+	color: white;
+	user-select: none;
+	z-index: 50;
+}
+.cog-container {
+	position: relative;
+	height: 230px;
+	width: 400px;
+	background: transparent;
+	/* cursor: crosshair; */
+	/* background: blue; */
+}
+/* .cog-container * {
+	pointer-events: none;
+} */
+.cog {
+	position: absolute;
+	top: -64px;
+	left: -64px;
+	width: 128px;
+	height: 128px;
+	border-radius: 100%;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	background-color: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 16pt;
+	text-align: center;
+	word-break: break-word;
+	pointer-events: auto;
+	cursor: crosshair;
+}
+.cog-center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}
+.joystick {
+	position: fixed;
+	width: 96px;
+	height: 96px;
+	border-radius: 100%;
+	background-color: #ccc4;
+	visibility: hidden;
+	transform: translate(-50%, -50%);
+	z-index: 70;
+}
+.teeth {
+	opacity: 0;
+	transition: opacity .3s;
+}
+.tooth {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-left: 1px solid;
+	border-image: linear-gradient(to top, #ccccccff, #cccccc00) 1;
+	height: 24px;
+	transform-origin: bottom center;
+}
+.tooth-text {
+	position: absolute;
+	margin: 0;
+	line-height: 0;
+	width: max-content;
+}
+.cog-deg-label {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	align-content: center;
+	font-size: 32pt;
+	transition: opacity 2s;
+	opacity: 0;
+}
