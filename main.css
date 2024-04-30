@@ -8,6 +8,7 @@ body {
 	background-color: #222;
 	margin: 0;
 	font-family: 'Platypi', serif;
+	overflow: hidden;
 }
 main {
 	position: relative;

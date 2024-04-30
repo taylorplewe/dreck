@@ -188,6 +188,6 @@ cogEl.addEventListener('mousedown', e => joyDragStart(e));
 document.addEventListener('mousemove', e => joyDragMove(e));
 document.addEventListener('mouseup', joyDragEnd);
 // touch
-cogEl.addEventListener('touchstart', ({ touches: { 0: touch } }) => joyDragStart(e));
-document.addEventListener('touchmove', ({ touches: { 0: touch } }) => joyDragMove(e));
+cogEl.addEventListener('touchstart', ({ touches: { 0: touch } }) => joyDragStart(touch));
+document.addEventListener('touchmove', ({ touches: { 0: touch } }) => joyDragMove(touch));
 document.addEventListener('touchend', joyDragEnd);
