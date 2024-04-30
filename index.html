@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Dreck | MUD Client</title>
+		<script src="main.js" type="module"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="node_modules/@xterm/xterm/lib/xterm.js"></script>
+		<script src="node_modules/@xterm/addon-fit/lib/addon-fit.js"></script>
+		<!-- <script src="https://unpkg.com/@phosphor-icons/web"></script> -->
+		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="node_modules/@xterm/xterm/css/xterm.css" />
+		<link rel="icon" type="image/x-icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+
+		<!-- Google fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<main>
+			<div id="consoleContainer">
+				<div id="console"></div>
+				<div id="commandLineContainer">
+					<span id="commandLinePrefix">></span>
+					<input id="commandLine">
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
