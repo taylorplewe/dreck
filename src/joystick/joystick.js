@@ -187,22 +187,18 @@ const joyDragEnd = () => {
 cogEl.addEventListener('mousedown', e => joyDragStart(e));
 document.addEventListener('mousemove', e => joyDragMove(e));
 document.addEventListener('mouseup', joyDragEnd);
-cogEl.addEventListener('touchstart', e => {
-	if (isEditing) {
-		e.preventDefault();
-		e.stopPropagation();
-		e.returnValue = false;
-	}
-	const { touches: { 0: touch }} = e;
-	joyDragStart(touch);
-});
-document.addEventListener('touchmove', e => {
-	if (isDragging) {
-		e.preventDefault();
-		e.stopPropagation();
-		e.returnValue = false;
-	}
-	const { touches: { 0: touch }} = e;
-	joyDragMove(touch);
-});
+
+// do not allow user to select text in the joystick/cog
+const absorbTouchEvent = e => {
+	e.returnValue = false;
+	e.preventDefault();
+}
+cogEl.addEventListener('touchstart', absorbTouchEvent);
+cogEl.addEventListener('touchmove', absorbTouchEvent);
+cogEl.addEventListener('touchend', absorbTouchEvent);
+cogEl.addEventListener('touchcancel', absorbTouchEvent);
+
+// touch
+cogEl.addEventListener('touchstart', ({ touches: { 0: touch } }) => joyDragStart(touch));
+document.addEventListener('touchmove', ({ touches: { 0: touch } }) => joyDragMove(touch));
 document.addEventListener('touchend', joyDragEnd);
