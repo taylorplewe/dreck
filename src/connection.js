@@ -10,6 +10,20 @@ const term = new Terminal({
 io = io();
 const fitAddon = new FitAddon.FitAddon();
 
+const convertLFtoCRLF = byteArray => {
+	const crlfArray = new Uint8Array(byteArray.length * 2);
+	let index = 0;
+	for (let i = 0; i < byteArray.length; i++) {
+        if (byteArray[i] === 10) { // LF (0x0A) found
+            crlfArray[index++] = 13; // CR (0x0D)
+            crlfArray[index++] = 10; // LF (0x0A)
+        } else {
+            crlfArray[index++] = byteArray[i];
+        }
+	}
+	return crlfArray.slice(0, index);
+}
+
 export const connect = (consoleEl, commandLineEl) => {
 	term.loadAddon(fitAddon);
 	term.open(consoleEl);
@@ -18,10 +32,11 @@ export const connect = (consoleEl, commandLineEl) => {
 	
 	io.on('data', data => {
 		const stream = new Uint8Array(data);
-		term.writeln(stream);
+		console.log(Array.from(stream).map(byte => ({ c: String.fromCharCode(byte), b: byte.toString(16) })));
+		term.writeln(convertLFtoCRLF(stream));
 	});
 	io.on('disconnected', () => {
-		term.writeln(`\x1b[3m\x1b[90mYou've been disconnected!\x1b[0m`);
+		term.writeln(`\x1b[3m\x1b[90m[dreck] You've been disconnected!\x1b[0m`);
 	});
 	io.emit('begin');
 	
@@ -51,7 +66,7 @@ export const connect = (consoleEl, commandLineEl) => {
 	});
 	
 	window.addEventListener('keydown', e => {
-		if (e.key === 'C' && e.ctrlKey) {
+		if (e.key === 'c' && e.ctrlKey) {
 			io.emit('kill');
 		}
 	});
