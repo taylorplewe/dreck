@@ -190,6 +190,7 @@ document.addEventListener('mouseup', joyDragEnd);
 cogEl.addEventListener('touchstart', e => {
 	if (isEditing) {
 		e.preventDefault();
+		e.stopPropagation();
 		e.returnValue = false;
 	}
 	const { touches: { 0: touch }} = e;
@@ -198,9 +199,10 @@ cogEl.addEventListener('touchstart', e => {
 document.addEventListener('touchmove', e => {
 	if (isDragging) {
 		e.preventDefault();
+		e.stopPropagation();
 		e.returnValue = false;
 	}
 	const { touches: { 0: touch }} = e;
-	joyDragStart(touch);
+	joyDragMove(touch);
 });
 document.addEventListener('touchend', joyDragEnd);
