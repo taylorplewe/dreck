@@ -21,8 +21,6 @@
 } */
 .cog {
 	position: absolute;
-	top: -64px;
-	left: -64px;
 	width: 128px;
 	height: 128px;
 	border-radius: 100%;
@@ -37,6 +35,7 @@
 	word-break: break-word;
 	pointer-events: auto;
 	cursor: crosshair;
+	transform: translate(-50%, -50%);
 }
 .cog-center {
 	position: absolute;
