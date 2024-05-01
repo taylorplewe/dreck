@@ -17,6 +17,14 @@ main {
 #consoleContainer {
 	display: flex;
 	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+}
+#console {
+	flex-grow: 1;
+	background-color: #1a1a1a;
+	padding: 16px;
+	/* height: 512px; */
 }
 
 #commandLineContainer {
@@ -69,6 +77,6 @@ main {
 }
 
 /* x-term */
-.xterm-screen {
+/* .xterm-screen {
 	padding: 16px;
-}
+} */

@@ -3,15 +3,18 @@ import * as commandHistory from './commandHistory.js';
 const term = new Terminal({
 	fontFamily: 'Reddit Mono',
 	letterSpacing: '0px',
-	cols: 256,
 	theme: {
 		background: '#1a1a1a',
-	}
+	},
 });
 io = io();
+const fitAddon = new FitAddon.FitAddon();
 
 export const connect = (consoleEl, commandLineEl) => {
+	term.loadAddon(fitAddon);
 	term.open(consoleEl);
+	term._core._renderService.dimensions.css.cell.width = 4; // usually NaN idk why
+	fitAddon.fit();
 	
 	io.on('data', data => {
 		const stream = new Uint8Array(data);

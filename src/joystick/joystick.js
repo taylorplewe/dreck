@@ -1,6 +1,6 @@
 const teethEl = document.querySelector('.teeth');
 
-let defaultShortcuts = ['fetch', 'look around', 'map', 'inventory', 'look', 'walk', 'green'];
+let defaultShortcuts = ['n', 'nw', 'w', 'sw', 's', 'se', 'e', 'ne'];
 let shortcuts = [];
 for (const name of defaultShortcuts) shortcuts.push({name});
 let isEditing = false;
@@ -42,19 +42,12 @@ const updateTeeth = degs => {
 		currentDeg = (currentDeg + intervalDeg) % 360;
 	}
 };
-updateTeeth(0);
+updateTeeth(338);
 
 
 // rotate the cog
-// const cogDegEl = document.querySelector('.cog-deg-label');
-const cogContainerEl = document.querySelector('.cog-container');
-const cogEditPaneEl = document.querySelector('.cog-edit-pane');
 const cogCenterEl = document.querySelector('.cog-center');
 const cogEl = document.querySelector('.cog');
-let hideLabelTimeout;
-// const updateLabel = degs => {
-// 	cogDegEl.textContent = `${degs || '0'}°`;
-// };
 const getDeg = point => (Math.atan2(point.y, point.x) * 180) / Math.PI;
 let startDeg = 0;
 let currentDeg = 0;
@@ -67,39 +60,6 @@ const getEventPointFromCenter = e => {
 		y: e.clientY - elRect.y,
 	}
 };
-const dragStart = e => {
-	e.stopPropagation();
-	startDeg = getDeg(getEventPointFromCenter(e));
-	isRotating = true;
-	clearTimeout(hideLabelTimeout);
-	// cogDegEl.style.opacity = 1;
-	cogEditPaneEl.setAttribute('dragging', '');
-};
-const dragMove = e => {
-	if (isRotating) {
-		const currDeg = getDeg(getEventPointFromCenter(e));
-		let degs = parseInt((currDeg - startDeg) + oldDeg) % 360;
-		if (degs < 0) degs += 360;
-		currentDeg = degs;
-		updateLabel(degs);
-		updateTeeth(degs);
-	}
-};
-const dragEnd = () => {
-	isRotating && (oldDeg = currentDeg);
-	isRotating = false;
-	// clearTimeout(hideLabelTimeout);
-	// hideLabelTimeout = setTimeout(() => { cogDegEl.style.opacity = 0; }, 2000);
-	cogEditPaneEl.removeAttribute('dragging');
-}
-// mouse
-cogEditPaneEl.addEventListener('mousedown', e => dragStart(e));
-document.addEventListener('mousemove', e => dragMove(e));
-document.addEventListener('mouseup', dragEnd);
-// touch
-cogEditPaneEl.addEventListener('touchstart', ({ touches: { 0: touch } }) => dragStart(touch));
-document.addEventListener('touchmove', ({ touches: { 0: touch } }) => dragMove(touch));
-document.addEventListener('touchend', dragEnd);
 
 // joystick
 const joystickEl = document.querySelector('.joystick');
