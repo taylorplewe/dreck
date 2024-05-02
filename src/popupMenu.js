@@ -1,25 +1,22 @@
 export const createPopupMenu = (items, x, y) => {
-	const backdropEl = document.createElement('div');
-	backdropEl.className = 'backdrop';
+	const backdropEl = document.querySelector('#popup-backdrop');
+	backdropEl.innerHTML = '';
+	backdropEl.style.visibility = 'visible';
 	const menuEl = document.createElement('div');
 	menuEl.className = 'popup-menu';
 	menuEl.style.top = `${y}px`;
 	menuEl.style.left = `${x}px`;
 	const listEl = document.createElement('ul');
 	menuEl.appendChild(listEl);
+	backdropEl.appendChild(menuEl);
 
 	for (const item of items) {
 		const itemEl = document.createElement('li');
 		itemEl.className = 'popup-menu-item';
 		itemEl.onclick = item.callback;
+		itemEl.textContent = item.text;
 		listEl.appendChild(itemEl);
-		const textEl = document.createElement('div');
-		textEl.textContent = item.text;
-		itemEl.appendChild(textEl);
 	}
-
-	document.body.appendChild(backdropEl);
-	document.body.appendChild(menuEl);
 
 	// fade
 	menuEl.style.opacity = 0;
@@ -28,10 +25,9 @@ export const createPopupMenu = (items, x, y) => {
 	});
 
 	const clear = () => {
-		document.body.removeChild(backdropEl);
 		menuEl.style.opacity = 0;
 		setTimeout(() => {
-			document.body.removeChild(menuEl);
+			backdropEl.style.visibility = 'hidden';
 		}, 200);
 	}
 

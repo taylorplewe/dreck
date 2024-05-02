@@ -1,6 +1,7 @@
 /*
 	z-index
-	50-100: joysticks, UI that sits above the console
+	0-49: console, regular flow of elements
+	50-99: joysticks, UI that sits above the console
 	100+: popup-menus, modals
 */
 
@@ -48,6 +49,16 @@ main {
 	border: 0;
 	outline: none;
 	flex-grow: 1;
+}
+
+#popup-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 100;
+	visibility: hidden;
 }
 
 .popup-menu {
