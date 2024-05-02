@@ -3,8 +3,9 @@ import { createPopupMenu } from './src/popupMenu.js';
 
 const consoleEl = document.querySelector('#console');
 const commandLineEl = document.querySelector('#commandLine');
+const minimapEl = document.querySelector('#minimap');
 
-connect(consoleEl, commandLineEl);
+connect(consoleEl, commandLineEl, minimapEl);
 
 const consoleContextMenuItems = [
 	{

@@ -5,6 +5,11 @@
 	100+: popup-menus, modals
 */
 
+:root {
+	--standard-padding: 16px;
+	--dark-bg-color: #1a1a1a;
+	--border-color: #333;
+}
 body {
 	background-color: #222;
 	margin: 0;
@@ -23,32 +28,45 @@ main {
 }
 #console {
 	flex-grow: 1;
-	background-color: #1a1a1a;
-	padding: 16px;
+	background-color: var(--dark-bg-color);
+	padding: var(--standard-padding);
 	/* height: 512px; */
 }
 
 #commandLineContainer {
-	border-top: 1px solid #333;
+	border-top: 1px solid var(--border-color);
 	display: flex;
 }
 #commandLinePrefix {
-	background-color: #1a1a1a;
-	padding: 16px;
+	background-color: var(--dark-bg-color);
+	padding: var(--standard-padding);
 	padding-right: 0;
 	font-size: 15px;
 	color: #555;
 	font-family: 'Reddit Mono';
 }
 #commandLine {
-	background-color: #1a1a1a;
+	background-color: var(--dark-bg-color);
 	font-size: 15px;
 	color: white;
 	font-family: 'Reddit Mono';
-	padding: 16px;
+	padding: var(--standard-padding);
 	border: 0;
 	outline: none;
 	flex-grow: 1;
+}
+
+#minimap {
+	position: fixed;
+	top: 32px;
+	right: 32px;
+	width: max-content;
+	height: max-content;
+	min-width: 300px;
+	padding: var(--standard-padding);
+	z-index: 50;
+	background-color: var(--dark-bg-color);
+	border: 1px solid var(--border-color);
 }
 
 #popup-backdrop {

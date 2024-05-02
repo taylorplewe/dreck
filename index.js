@@ -18,7 +18,7 @@ const io = require('socket.io')(server)
 io.on('connection', clientSocket => {
 	console.log('hey we got the go sign');
 	telnetSocket = new net.Socket();
-	// telnetSocket.connect({ host: 'erionmud.com', port: 1234 });
+	telnetSocket.connect({ host: 'erionmud.com', port: 1234 });
 	// telnetSocket.connect({ host: 'proceduralrealms.com', port: 3000 });
 	// telnetSocket.connect({ host: 'wocmud.org', port: 4000 });
 	telnetSocket.on('data', data => {

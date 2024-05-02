@@ -1,6 +1,6 @@
 const teethEl = document.querySelector('.teeth');
 
-let defaultShortcuts = ['n', 'nw', 'w', 'sw', 's', 'se', 'e', 'ne'];
+let defaultShortcuts = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'];
 let shortcuts = [];
 for (const name of defaultShortcuts) shortcuts.push({name});
 let isEditing = false;
@@ -62,11 +62,13 @@ const getEventPointFromCenter = e => {
 };
 
 // joystick
+import { sendCommand } from "../connection.js";
 const joystickEl = document.querySelector('.joystick');
 let isDragging = false;
 let joyPosDiff;
 let joyDeg;
 let joyPreviewTimeout;
+let targetShortcutName;
 const activatePreview = () => {
 	joyPreviewTimeout = setTimeout(() => {
 		teethEl.style.opacity = 1;
@@ -79,7 +81,6 @@ const deactivatePreview = () => {
 const checkJoystickForShortcut = () => {
 	joyDeg = parseInt(getDeg(joyPosDiff) + 90) % 360;
 	if (joyDeg < 0) joyDeg += 360;
-	let targetShortcutName;
 	for (const s of shortcuts) {
 		if (joyDeg > s.start && joyDeg < s.end) targetShortcutName = s.name;
 		if (s.end < s.start && (joyDeg > s.start || joyDeg < s.end)) targetShortcutName = s.name;
@@ -94,7 +95,8 @@ const cancelPreviewAction = () => {
 }
 const actionRelease = () => {
 	cancelPreviewAction();
-	// do action
+	if (!targetShortcutName) return;
+	sendCommand(targetShortcutName);
 }
 const constrainJoystick = (x, y) => {
 	if (!isDragging) return;
