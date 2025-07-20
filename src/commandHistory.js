@@ -9,7 +9,7 @@ export const addToCommandHistory = command => {
 	commandHistory.unshift(command) > MAX_HIST_SIZE && trim();
 }
 export const getPrevCommand = () => {
-	commandHistoryInd = Math.min(commandHistoryInd + 1, commandHistory.length - 1);
+																																						commandHistoryInd = Math.min(commandHistoryInd + 1, commandHistory.length - 1);
 	return commandHistory[commandHistoryInd] || '';
 }
 export const getNextCommand = () => {
